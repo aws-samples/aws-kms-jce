@@ -1,5 +1,7 @@
 package software.amazon.awssdk.services.kms.jce.util.crt;
 
+import org.bouncycastle.asn1.x509.Extension;
+import org.bouncycastle.jce.X509KeyUsage;
 import software.amazon.awssdk.services.kms.jce.provider.signature.KmsSigningAlgorithm;
 import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.X509v3CertificateBuilder;
@@ -51,6 +53,8 @@ public abstract class SelfSignedCrtGenerator {
             );
 
             ContentSigner signGen = new JcaContentSignerBuilder(kmsSigningAlgorithm.getAlgorithm()).setProvider("KMS").build(keyPair.getPrivate());
+
+            certificateGenerator.addExtension(Extension.keyUsage, true, new X509KeyUsage(X509KeyUsage.digitalSignature));
 
             X509CertificateHolder holder = certificateGenerator.build(signGen);
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
