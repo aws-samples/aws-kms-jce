@@ -38,8 +38,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-       <aws.bom.version>2.20.109</aws.bom.version>
-        <junit.version>4.13.1</junit.version>
+        <aws.bom.version>2.20.110</aws.bom.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <modules>
