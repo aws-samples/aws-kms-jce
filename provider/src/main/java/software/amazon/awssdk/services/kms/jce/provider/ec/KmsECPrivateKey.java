@@ -1,24 +1,22 @@
 package software.amazon.awssdk.services.kms.jce.provider.ec;
 
 import software.amazon.awssdk.services.kms.jce.provider.KmsKey;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigInteger;
 import java.security.interfaces.ECPrivateKey;
 import java.security.spec.ECParameterSpec;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class KmsECPrivateKey implements KmsKey, ECPrivateKey {
 
-    @NonNull
-    private final String id;
+    private static final long serialVersionUID = 1L;
+	private final String id;
     private final String algorithm = "EC";
     private final String format = "PKCS#8";
 
+    public KmsECPrivateKey(String id) {
+    	this.id = id;
+    }
+    
     @Override
     public BigInteger getS() {
         throw new UnsupportedOperationException();
@@ -33,5 +31,19 @@ public class KmsECPrivateKey implements KmsKey, ECPrivateKey {
     public ECParameterSpec getParams() {
         throw new UnsupportedOperationException();
     }
+
+	public String getId() {
+		return id;
+	}
+
+    @Override
+	public String getAlgorithm() {
+		return algorithm;
+	}
+
+    @Override
+	public String getFormat() {
+		return format;
+	}
 
 }

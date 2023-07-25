@@ -1,23 +1,21 @@
 package software.amazon.awssdk.services.kms.jce.provider.rsa;
 
 import software.amazon.awssdk.services.kms.jce.provider.KmsKey;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigInteger;
 import java.security.interfaces.RSAPrivateKey;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class KmsRSAPrivateKey implements KmsKey, RSAPrivateKey {
 
-    @NonNull
-    private final String id;
+    private static final long serialVersionUID = 1L;
+	private final String id;
     private final String algorithm = "RSA";
     private final String format = "X.509";
 
+    public KmsRSAPrivateKey(String id) {
+    	this.id = id;
+    }
+    
     @Override
     public BigInteger getPrivateExponent() {
         throw new UnsupportedOperationException();
@@ -32,5 +30,20 @@ public class KmsRSAPrivateKey implements KmsKey, RSAPrivateKey {
     public BigInteger getModulus() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+	public String getId() {
+		return id;
+	}
+
+    @Override
+	public String getAlgorithm() {
+		return algorithm;
+	}
+
+    @Override
+	public String getFormat() {
+		return format;
+	}
 
 }

@@ -1,23 +1,23 @@
 package software.amazon.awssdk.services.kms.jce.provider.ec;
 
 import software.amazon.awssdk.services.kms.jce.provider.KmsPublicKey;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
+import java.security.PublicKey;
 import java.security.interfaces.ECPublicKey;
 import java.security.spec.ECParameterSpec;
 import java.security.spec.ECPoint;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class KmsECPublicKey implements KmsPublicKey, ECPublicKey {
 
-    @NonNull
-    private final String id;
+    private static final long serialVersionUID = 1L;
+	private final String id;
     private final ECPublicKey publicKey;
 
+    public KmsECPublicKey(String id, ECPublicKey publicKey) {
+    	this.id = id;
+    	this.publicKey = publicKey;
+    }
+    
     @Override
     public ECPoint getW() {
         return publicKey.getW();
@@ -43,4 +43,12 @@ public class KmsECPublicKey implements KmsPublicKey, ECPublicKey {
         return publicKey.getParams();
     }
 
+    @Override
+	public String getId() {
+		return id;
+	}
+
+    public PublicKey getPublicKey() {
+    	return publicKey;
+    }
 }

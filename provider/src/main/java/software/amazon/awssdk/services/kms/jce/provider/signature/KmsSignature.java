@@ -1,7 +1,6 @@
 package software.amazon.awssdk.services.kms.jce.provider.signature;
 
 import software.amazon.awssdk.services.kms.jce.provider.KmsKey;
-import lombok.NonNull;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.kms.KmsClient;
 import software.amazon.awssdk.services.kms.model.MessageType;
@@ -21,7 +20,7 @@ public class KmsSignature extends SignatureSpi {
 
     private KmsKey key;
 
-    public KmsSignature(@NonNull KmsClient kmsClient, @NonNull KmsSigningAlgorithm kmsSigningAlgorithm) {
+    public KmsSignature(KmsClient kmsClient, KmsSigningAlgorithm kmsSigningAlgorithm) {
         this.kmsClient = kmsClient;
         this.signingAlgorithmSpec = kmsSigningAlgorithm.getSigningAlgorithmSpec();
         initMessageDigest(kmsSigningAlgorithm.getDigestAlgorithm());
