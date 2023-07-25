@@ -4,9 +4,9 @@ import software.amazon.awssdk.services.kms.model.SigningAlgorithmSpec;
 
 public enum KmsSigningAlgorithm {
 	
-    RSASSA_PSS_SHA_256("RSASSA-PSS/SHA256", "SHA-256", SigningAlgorithmSpec.RSASSA_PSS_SHA_256),
-    RSASSA_PSS_SHA_384("RSASSA-PSS/SHA384", "SHA-384", SigningAlgorithmSpec.RSASSA_PSS_SHA_384),
-    RSASSA_PSS_SHA_512("RSASSA-PSS/SHA512", "SHA-512", SigningAlgorithmSpec.RSASSA_PSS_SHA_512),
+    RSASSA_PSS_SHA_256("SHA256withRSAandMGF1", "SHA-256", SigningAlgorithmSpec.RSASSA_PSS_SHA_256),
+    RSASSA_PSS_SHA_384("SHA384withRSAandMGF1", "SHA-384", SigningAlgorithmSpec.RSASSA_PSS_SHA_384),
+    RSASSA_PSS_SHA_512("SHA512withRSAandMGF1", "SHA-512", SigningAlgorithmSpec.RSASSA_PSS_SHA_512),
     RSASSA_PKCS1_V1_5_SHA_256("SHA256withRSA", "SHA-256", SigningAlgorithmSpec.RSASSA_PKCS1_V1_5_SHA_256),
     RSASSA_PKCS1_V1_5_SHA_384("SHA384withRSA", "SHA-384", SigningAlgorithmSpec.RSASSA_PKCS1_V1_5_SHA_384),
     RSASSA_PKCS1_V1_5_SHA_512("SHA512withRSA", "SHA-512", SigningAlgorithmSpec.RSASSA_PKCS1_V1_5_SHA_512),
