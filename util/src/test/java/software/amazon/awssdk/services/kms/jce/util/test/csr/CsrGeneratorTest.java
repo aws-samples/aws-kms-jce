@@ -7,16 +7,18 @@ import software.amazon.awssdk.services.kms.jce.provider.signature.KmsSigningAlgo
 import software.amazon.awssdk.services.kms.jce.util.csr.CsrGenerator;
 import software.amazon.awssdk.services.kms.jce.util.csr.CsrInfo;
 import software.amazon.awssdk.services.kms.jce.util.test.KeyIds;
-import lombok.SneakyThrows;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.operator.ContentVerifierProvider;
+import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentVerifierProviderBuilder;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
+import org.bouncycastle.pkcs.PKCSException;
 import org.junit.Assert;
 import org.junit.Test;
 import software.amazon.awssdk.services.kms.KmsClient;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.KeyPair;
 import java.security.Security;
@@ -33,8 +35,7 @@ public class CsrGeneratorTest {
     }
 
     @Test
-    @SneakyThrows
-    public void test() {
+    public void test() throws IOException, OperatorCreationException, PKCSException {
         KeyPair keyPair = KmsRSAKeyFactory.getKeyPair(kmsClient, KeyIds.SIGN_RSA);
         String keyId = ((KmsKey)keyPair.getPrivate()).getId();
         KmsSigningAlgorithm kmsSigningAlgorithm = KmsSigningAlgorithm.RSASSA_PKCS1_V1_5_SHA_256;

@@ -5,6 +5,6 @@ package software.amazon.awssdk.services.kms.jce.util.test;
  */
 public interface KeyIds {
 
-    String SIGN_RSA = "582e1f7f-c43c-4abe-9fb8-1f0b94a9a160";
+    String SIGN_RSA = "544dbea8-09f1-4eeb-84fb-22ede2771fe7";
 
 }

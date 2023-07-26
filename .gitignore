@@ -3,3 +3,11 @@
 **/target/
 /lsp/
 *.DS_Store
+.project
+.settings/
+provider/.classpath
+provider/.project
+provider/.settings/
+util/.classpath
+util/.project
+util/.settings/
