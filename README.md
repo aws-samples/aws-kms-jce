@@ -7,7 +7,7 @@ This repository is a multi-module project composed of the following modules:
 * **provider**: contains the AWS KMS JCE Provider implementation
 * **util**: contains utility classes for generating CSR and Self-Signed Certificate
 
-### How to use
+### How to use (updated)
 
 To use the AWS KMS JCE Provider, you first need to [create an asymmetric CMK in the AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) for signature and verification. 
 An asymmetric CMK represents a mathematically related public key and private key pair. It is possible to give the public key to anyone, even if they are not trusted, but the private key must be kept secret.
