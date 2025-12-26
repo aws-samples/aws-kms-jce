@@ -1,21 +1,21 @@
 package software.amazon.awssdk.services.kms.jce.provider.rsa;
 
 import software.amazon.awssdk.services.kms.jce.provider.KmsPublicKey;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigInteger;
+import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class KmsRSAPublicKey implements KmsPublicKey, RSAPublicKey {
 
-    @NonNull
-    private final String id;
+    private static final long serialVersionUID = 1L;
+	private final String id;
     private final RSAPublicKey publicKey;
+    
+    public KmsRSAPublicKey(String id, RSAPublicKey publicKey) {
+    	this.id = id;
+    	this.publicKey = publicKey;
+    }
 
     @Override
     public BigInteger getPublicExponent() {
@@ -42,4 +42,13 @@ public class KmsRSAPublicKey implements KmsPublicKey, RSAPublicKey {
         return publicKey.getModulus();
     }
 
+    @Override
+	public String getId() {
+		return id;
+	}
+
+    @Override
+	public PublicKey getPublicKey() {
+		return publicKey;
+	}
 }

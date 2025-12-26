@@ -5,13 +5,16 @@ import software.amazon.awssdk.services.kms.jce.provider.KmsProvider;
 import software.amazon.awssdk.services.kms.jce.provider.KmsPublicKey;
 import software.amazon.awssdk.services.kms.jce.provider.signature.KmsSigningAlgorithm;
 import software.amazon.awssdk.services.kms.jce.provider.test.util.StringUtil;
-import lombok.SneakyThrows;
 import org.junit.Assert;
 import org.junit.Test;
 import software.amazon.awssdk.services.kms.KmsClient;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
+import java.security.SignatureException;
 import java.security.spec.AlgorithmParameterSpec;
 
 public abstract class KmsSignatureTest {
@@ -37,8 +40,7 @@ public abstract class KmsSignatureTest {
     }
 
     @Test
-    @SneakyThrows
-    public void test() {
+    public void test() throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, InvalidAlgorithmParameterException {
         KeyPair keyPair = getKeyPair();
         KmsSigningAlgorithm kmsSigningAlgorithm = getKmsSigningAlgorithm();
 

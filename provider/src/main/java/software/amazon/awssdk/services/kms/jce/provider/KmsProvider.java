@@ -2,7 +2,6 @@ package software.amazon.awssdk.services.kms.jce.provider;
 
 import software.amazon.awssdk.services.kms.jce.provider.signature.KmsSignature;
 import software.amazon.awssdk.services.kms.jce.provider.signature.KmsSigningAlgorithm;
-import lombok.NonNull;
 import software.amazon.awssdk.services.kms.KmsClient;
 
 import java.security.Provider;
@@ -11,7 +10,9 @@ import java.util.stream.Stream;
 
 public class KmsProvider extends Provider {
 
-    public KmsProvider(@NonNull KmsClient kmsClient) {
+    private static final long serialVersionUID = 1L;
+
+	public KmsProvider(KmsClient kmsClient) {
         super("KMS", "software.amazon.awssdk.services.kms.jce", "AWS KMS Provider");
         registerSignatures(kmsClient);
     }

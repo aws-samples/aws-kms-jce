@@ -8,7 +8,6 @@ import software.amazon.awssdk.services.kms.jce.util.crt.SelfSignedCrtGenerator;
 import software.amazon.awssdk.services.kms.jce.util.csr.CsrGenerator;
 import software.amazon.awssdk.services.kms.jce.util.csr.CsrInfo;
 import software.amazon.awssdk.services.kms.jce.util.test.KeyIds;
-import lombok.SneakyThrows;
 import org.junit.Test;
 import software.amazon.awssdk.services.kms.KmsClient;
 
@@ -16,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.Security;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
@@ -31,8 +31,7 @@ public class SelfSignedCrtGeneratorTest {
     }
 
     @Test
-    @SneakyThrows
-    public void test() {
+    public void test() throws CertificateException {
         KeyPair keyPair = KmsRSAKeyFactory.getKeyPair(kmsClient, KeyIds.SIGN_RSA);
         String keyId = ((KmsKey)keyPair.getPrivate()).getId();
         KmsSigningAlgorithm kmsSigningAlgorithm = KmsSigningAlgorithm.RSASSA_PKCS1_V1_5_SHA_256;
@@ -66,8 +65,7 @@ public class SelfSignedCrtGeneratorTest {
         certificate.checkValidity();
     }
 
-    @SneakyThrows
-    private X509Certificate getCertificate(String certificate) {
+    private X509Certificate getCertificate(String certificate) throws CertificateException {
         CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
         ByteArrayInputStream inputStream = new ByteArrayInputStream(certificate.getBytes(StandardCharsets.UTF_8));
         return (X509Certificate) certificateFactory.generateCertificate(inputStream);

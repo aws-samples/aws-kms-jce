@@ -2,8 +2,6 @@ package software.amazon.awssdk.services.kms.jce.provider;
 
 import software.amazon.awssdk.services.kms.jce.provider.ec.KmsECKeyFactory;
 import software.amazon.awssdk.services.kms.jce.provider.rsa.KmsRSAKeyFactory;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.services.kms.KmsClient;
 import software.amazon.awssdk.services.kms.model.AliasListEntry;
 import software.amazon.awssdk.services.kms.model.DescribeKeyResponse;
@@ -19,11 +17,13 @@ import java.security.cert.CertificateException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 public class KmsKeyStore extends KeyStoreSpi {
 
-    @NonNull
     private final KmsClient kmsClient;
+    
+    public KmsKeyStore(KmsClient kmsClient) {
+    	this.kmsClient = kmsClient;
+    }
 
     @Override
     public Enumeration<String> engineAliases() {
