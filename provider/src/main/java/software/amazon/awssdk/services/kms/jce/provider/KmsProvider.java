@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 
 public class KmsProvider extends Provider {
 
+    public KmsProvider() {
+        this(KmsClient.builder().build());
+    }
     public KmsProvider(@NonNull KmsClient kmsClient) {
         super("KMS", "software.amazon.awssdk.services.kms.jce", "AWS KMS Provider");
         registerSignatures(kmsClient);
